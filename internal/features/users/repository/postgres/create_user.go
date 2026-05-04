@@ -17,7 +17,7 @@ func (r *UsersRepository) CreateUser(
 	query := `
 	INSERT INTO rep.users (username, password, first_name, last_name, address, email, phone_number, rating, role, image_url) 
 	VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
-	RETURNING *
+	RETURNING *;
 	`
 
 	row := r.pool.QueryRow(ctx, query, user.Username, user.Password, user.FirstName, user.LastName, user.Address, user.Email, user.PhoneNumber, user.Rating, user.Role, user.ImageURL)

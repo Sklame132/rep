@@ -16,7 +16,7 @@ func (r *UsersRepository) DeleteUser(
 
 	query := `
 		DELETE FROM rep.users
-		WHERE id=uuid_or_null($1) OR username=$1
+		WHERE id=uuid_or_null($1) OR username=$1;
 	`
 
 	cmdTag, err := r.pool.Exec(ctx, query, login)

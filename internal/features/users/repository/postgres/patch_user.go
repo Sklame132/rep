@@ -28,7 +28,7 @@ func (r *UsersRepository) PatchUser(
 		rating=$8,
 		role=$9
 	WHERE id=uuid_or_null($10) OR username=$10
-	RETURNING *
+	RETURNING *;
 	`
 
 	row := r.pool.QueryRow(

@@ -19,7 +19,7 @@ func (r *UsersRepository) GetUser(
 
 	query := `
 		SELECT * FROM rep.users
-		WHERE id=uuid_or_null($1) OR username=$1
+		WHERE id=uuid_or_null($1) OR username=$1;
 	`
 
 	row := r.pool.QueryRow(ctx, query, login)

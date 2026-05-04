@@ -10,7 +10,6 @@ import (
 	core_http_request "github.com/Sklame132/rep/internal/core/transport/http/request"
 	core_http_response "github.com/Sklame132/rep/internal/core/transport/http/response"
 	core_http_types "github.com/Sklame132/rep/internal/core/transport/http/types"
-	core_http_utils "github.com/Sklame132/rep/internal/core/transport/http/utils"
 )
 
 type PatchUserRequest struct {
@@ -116,7 +115,7 @@ func (h *UsersHTTPHandler) PatchUser(w http.ResponseWriter, r *http.Request) {
 	log := core_logger.FromContext(ctx)
 	responseHandler := core_http_response.NewHTTPResponseHandler(log, w)
 
-	userLogin, err := core_http_utils.GetStringPathValue(r, "login")
+	userLogin, err := core_http_request.GetStringPathValue(r, "login")
 	if err != nil {
 		responseHandler.ErrorResponse(
 			err,
@@ -155,15 +154,15 @@ func (h *UsersHTTPHandler) PatchUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func userPatchFromRequest(request PatchUserRequest) domain.UserPatch {
-	return domain.UserPatch{
-		Username:    request.Username.ToDomain(),
-		Password:    request.Password.ToDomain(),
-		FirstName:   request.FirstName.ToDomain(),
-		LastName:    request.LastName.ToDomain(),
-		Address:     request.Address.ToDomain(),
-		Email:       request.Email.ToDomain(),
-		PhoneNumber: request.PhoneNumber.ToDomain(),
-		Rating:      request.Rating.ToDomain(),
-		Role:        request.Role.ToDomain(),
-	}
+	return domain.NewUserPatch(
+		request.Username.ToDomain(),
+		request.Password.ToDomain(),
+		request.FirstName.ToDomain(),
+		request.LastName.ToDomain(),
+		request.Address.ToDomain(),
+		request.Email.ToDomain(),
+		request.PhoneNumber.ToDomain(),
+		request.Rating.ToDomain(),
+		request.Role.ToDomain(),
+	)
 }
