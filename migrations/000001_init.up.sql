@@ -15,7 +15,7 @@ CREATE TABLE rep.users (
     created_at date NOT NULL DEFAULT CURRENT_DATE,
     updated_at timestamp,
     rating smallint NOT NULL DEFAULT 1000,
-    role varchar(16) NOT NULL DEFAULT 'user',
+    role varchar(16) DEFAULT 'user',
     image_url text
 );
 
@@ -67,3 +67,12 @@ CREATE TABLE rep.games (
     result rep.game_result NOT NULL,
     history json
 );
+
+CREATE OR REPLACE FUNCTION uuid_or_null(str text)
+RETURNS uuid AS $$
+BEGIN
+  RETURN str::uuid;
+EXCEPTION WHEN invalid_text_representation THEN
+  RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;

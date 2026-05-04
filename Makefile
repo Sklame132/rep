@@ -12,8 +12,8 @@ env-down:
 env-cleanup:
 	@read -p "Опасность утери данных. Вы точно хотите удалить все volume файлы окружения? [y/N]: " ans; \
 	if [ "$$ans" = "y" ]; then \
-		docker compose down rep-postgres && \
-		rm -rf out/pgdata && \
+		docker compose down rep-postgres port-forwarder && \
+		rm -rf ${PROJECT_ROOT}/out/pgdata && \
 		echo "Файлы окружения очищены"; \
 	else \
 		echo "Очистка окружения отменена."; \
@@ -54,3 +54,9 @@ migrate-action:
 		-path /migrations \
 		-database postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@rep-postgres:5432/${POSTGRES_DB}?sslmode=disable \
 		"$(action)"
+
+rep-run: 
+	@export LOGGER_FOLDER=${PROJECT_ROOT}/out/logs && \
+	export POSTGRES_HOST=localhost && \
+	go mod tidy && \
+	go run ${PROJECT_ROOT}/cmd/rep/main.go
