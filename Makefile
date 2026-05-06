@@ -64,5 +64,9 @@ rep-run:
 rep-deploy:
 	@docker compose up -d --build rep
 
+rep-undeploy:
+	@docker compose down rep
+
+
 ps:
 	@docker compose ps
