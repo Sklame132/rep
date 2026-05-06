@@ -60,3 +60,9 @@ rep-run:
 	export POSTGRES_HOST=localhost && \
 	go mod tidy && \
 	go run ${PROJECT_ROOT}/cmd/rep/main.go
+
+rep-deploy:
+	@docker compose up -d --build rep
+
+ps:
+	@docker compose ps
