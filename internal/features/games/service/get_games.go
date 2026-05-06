@@ -12,6 +12,7 @@ func (s *GamesService) GetGames(
 	ctx context.Context,
 	limit *int,
 	offset *int,
+	username *string,
 ) ([]domain.Game, error) {
 	if limit != nil && *limit < 0 {
 		return nil, fmt.Errorf(
@@ -26,7 +27,7 @@ func (s *GamesService) GetGames(
 		)
 	}
 
-	games, err := s.gamesRepository.GetGames(ctx, limit, offset)
+	games, err := s.gamesRepository.GetGames(ctx, limit, offset, username)
 	if err != nil {
 		return nil, fmt.Errorf("get games from repository: %w", err)
 	}

@@ -22,6 +22,7 @@ type GamesService interface {
 		ctx context.Context,
 		limit *int,
 		offset *int,
+		username *string,
 	) ([]domain.Game, error)
 }
 
