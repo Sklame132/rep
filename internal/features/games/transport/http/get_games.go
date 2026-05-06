@@ -11,6 +11,10 @@ import (
 type GetGamesResponse []GameDTOResponse
 
 func (h *GamesHTTPHandler) GetGames(w http.ResponseWriter, r *http.Request) {
+	const (
+		usernameQueryParamKey = "username"
+	)
+
 	ctx := r.Context()
 	log := core_logger.FromContext(ctx)
 	responseHandler := core_http_response.NewHTTPResponseHandler(log, w)
@@ -22,7 +26,14 @@ func (h *GamesHTTPHandler) GetGames(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	gameDomains, err := h.gamesService.GetGames(ctx, limit, offset)
+	usernameParam := r.URL.Query().Get(usernameQueryParamKey)
+	var username *string
+
+	if usernameParam != "" {
+		username = &usernameParam
+	}
+
+	gameDomains, err := h.gamesService.GetGames(ctx, limit, offset, username)
 	if err != nil {
 		responseHandler.ErrorResponse(err, "failed to get games")
 
