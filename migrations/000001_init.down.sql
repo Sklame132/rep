@@ -1,4 +1,4 @@
-DROP FUNCTION rep.uuid_or_null ();
+DROP FUNCTION uuid_or_null();
 
 DROP TABLE rep.games;
 
@@ -12,7 +12,7 @@ DROP TABLE rep.ivents;
 
 DROP TRIGGER before_update_users ON rep.users;
 
-DROP FUNCTION rep.set_updated_at ();
+DROP FUNCTION rep.set_updated_at();
 
 DROP TABLE rep.users;
 

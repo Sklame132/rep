@@ -40,7 +40,7 @@ func (h *UsersHTTPHandler) CreateUser(w http.ResponseWriter, r *http.Request) {
 
 	userDomain, err := h.usersService.CreateUser(ctx, userDomain)
 	if err != nil {
-		responseHandler.ErrorResponse(err, "failded to create user")
+		responseHandler.ErrorResponse(err, "failed to create user")
 
 		return
 	}

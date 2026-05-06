@@ -11,6 +11,9 @@ import (
 	core_postgres_pool "github.com/Sklame132/rep/internal/core/repository/postgres/pool"
 	core_http_middleware "github.com/Sklame132/rep/internal/core/transport/http/middleware"
 	core_http_server "github.com/Sklame132/rep/internal/core/transport/http/server"
+	games_postgres_repository "github.com/Sklame132/rep/internal/features/games/repository/postgres"
+	games_service "github.com/Sklame132/rep/internal/features/games/service"
+	games_transport_http "github.com/Sklame132/rep/internal/features/games/transport/http"
 	users_postgres_repository "github.com/Sklame132/rep/internal/features/users/repository/postgres"
 	users_service "github.com/Sklame132/rep/internal/features/users/service"
 	users_transport_http "github.com/Sklame132/rep/internal/features/users/transport/http"
@@ -47,6 +50,10 @@ func main() {
 	usersService := users_service.NewUsersService(usersRepository)
 	usersTransportHTTP := users_transport_http.NewUsersHTTPHandler(usersService)
 
+	gamesRepository := games_postgres_repository.NewGamesRepository(pool)
+	gamesService := games_service.NewGamesService(gamesRepository)
+	gamesTransportHTTP := games_transport_http.NewGamesHTTPHandler(gamesService)
+
 	logger.Debug("initializing HTTP server")
 
 	httpServer := core_http_server.NewHTTPServer(
@@ -60,7 +67,11 @@ func main() {
 
 	apiVersionRouter := core_http_server.NewAPIVersionRouter(core_http_server.ApiVersion_v1)
 	apiVersionRouter.RegisterRoutes(usersTransportHTTP.Routes()...)
-	httpServer.RegisterAPIRouters(apiVersionRouter)
+	apiVersionRouter.RegisterRoutes(gamesTransportHTTP.Routes()...)
+
+	httpServer.RegisterAPIRouters(
+		apiVersionRouter,
+	)
 
 	if err := httpServer.Run(ctx); err != nil {
 		logger.Error("HTTP server run error", zap.Error(err))
