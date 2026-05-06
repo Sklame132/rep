@@ -1,4 +1,4 @@
-package users_transport_http
+package games_transport_http
 
 import (
 	"net/http"
@@ -8,28 +8,28 @@ import (
 	core_http_response "github.com/Sklame132/rep/internal/core/transport/http/response"
 )
 
-type GetUsersResponse []UserDTOResponse
+type GetGamesResponse []GameDTOResponse
 
-func (h *UsersHTTPHandler) GetUsers(w http.ResponseWriter, r *http.Request) {
+func (h *GamesHTTPHandler) GetGames(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	log := core_logger.FromContext(ctx)
 	responseHandler := core_http_response.NewHTTPResponseHandler(log, w)
 
 	limit, offset, err := core_http_request.GetLimitOffsetQueryParams(r)
 	if err != nil {
-		responseHandler.ErrorResponse(err, "failed to get 'limit' / 'offset' query param")
+		responseHandler.ErrorResponse(err, "failed to get `limit` / `offset` query param")
 
 		return
 	}
 
-	userDomains, err := h.usersService.GetUsers(ctx, limit, offset)
+	gameDomains, err := h.gamesService.GetGames(ctx, limit, offset)
 	if err != nil {
-		responseHandler.ErrorResponse(err, "failed to get users")
+		responseHandler.ErrorResponse(err, "failed to get games")
 
 		return
 	}
 
-	response := GetUsersResponse(usersDTOFromDomains(userDomains))
+	response := GetGamesResponse(gamesDTOFromDomains(gameDomains))
 
 	responseHandler.JSONResponse(response, http.StatusOK)
 }

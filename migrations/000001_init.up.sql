@@ -12,7 +12,7 @@ CREATE TABLE rep.users (
         phone_number ~ '^\+[0-9]+$' AND 
         char_length(phone_number) BETWEEN 11 AND 16 
     ),
-    created_at date NOT NULL DEFAULT CURRENT_DATE,
+    created_at timestamp NOT NULL DEFAULT NOW(),
     updated_at timestamp,
     rating smallint NOT NULL DEFAULT 1000,
     role varchar(16) DEFAULT 'user',
@@ -39,7 +39,7 @@ CREATE TABLE rep.ivents (
     address varchar(80),
     datetime timestamp NOT NULL DEFAULT TIMESTAMP '2002-11-21 11:20:00',
     price int NOT NULL DEFAULT 0,
-    created_at date NOT NULL DEFAULT CURRENT_DATE,
+    created_at date NOT NULL DEFAULT NOW(),
     updated_at date,
     creator varchar(16) NOT NULL REFERENCES rep.users(username) ON UPDATE CASCADE,
     updater varchar(16) REFERENCES rep.users(username) ON UPDATE CASCADE,
@@ -57,15 +57,15 @@ CREATE TYPE rep.game_result AS ENUM ('win_w', 'win_b', 'draw');
 
 CREATE TABLE rep.games (
     id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-    fen_start varchar(64) NOT NULL DEFAULT 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
-    fen_end varchar(64) NOT NULL DEFAULT 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
-    created_at date NOT NULL DEFAULT CURRENT_DATE,
+    fen_start varchar(80) NOT NULL DEFAULT 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+    fen_end varchar(80) NOT NULL DEFAULT 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
     player_w varchar(16) NOT NULL REFERENCES rep.users(username) ON UPDATE CASCADE,
     player_b varchar(16) NOT NULL REFERENCES rep.users(username) ON UPDATE CASCADE,
     type rep.game_type NOT NULL DEFAULT 'online',
     mode varchar(16) NOT NULL,
     result rep.game_result NOT NULL,
-    history json
+    history json,
+    created_at timestamp NOT NULL DEFAULT NOW()
 );
 
 CREATE OR REPLACE FUNCTION uuid_or_null(str text)
