@@ -50,11 +50,6 @@ func NewUsersHTTPHandler(usersService UsersService) *UsersHTTPHandler {
 func (h *UsersHTTPHandler) Routes() []core_http_server.Route {
 	return []core_http_server.Route{
 		{
-			Method:  http.MethodPost,
-			Path:    "/users",
-			Handler: h.CreateUser,
-		},
-		{
 			Method: http.MethodGet,
 			Path: "/users",
 			Handler: h.GetUsers,
@@ -73,6 +68,26 @@ func (h *UsersHTTPHandler) Routes() []core_http_server.Route {
 			Method: http.MethodPatch,
 			Path: "/users/{login}",
 			Handler: h.PatchUser,
+		},
+		{
+			Method:  http.MethodPost,
+			Path:    "/register",
+			Handler: h.CreateUser,
+		},
+		{
+			Method: http.MethodPost,
+			Path: "/login",
+			Handler: h.Login,
+		},
+		{
+			Method: http.MethodGet,
+			Path: "/user",
+			Handler: h.User,
+		},
+		{
+			Method: http.MethodPost,
+			Path: "/logout",
+			Handler: h.Logout,
 		},
 	}
 }

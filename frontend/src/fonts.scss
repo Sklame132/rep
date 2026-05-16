@@ -1,0 +1,28 @@
+@font-face {
+    font-family: 'Benzin-ExtraBold';
+    src: url('./fonts//benzin/benzin-extrabold.woff2') format('woff2'),
+        url('./fonts/benzin/benzin-extrabold.woff') format('woff');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Benzin-Bold";
+    src: url('./fonts//benzin/benzin-bold.woff2') format('woff2'),
+            url('./fonts/benzin/benzin-bold.woff') format('woff');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Montserrat-Regular";
+    src: url('./fonts/montserrat/Montserrat-Regular.woff2') format('woff2');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Molde-Regular";
+    src: url('./fonts/molde/Molde-Expanded-Regular.woff2') format('woff2'),
+        url('./fonts/molde/Molde-Expanded-Regular.woff') format('woff');
+    font-display: swap;
+    font-weight: 200;
+    font-style: normal;
+}

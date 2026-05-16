@@ -1,0 +1,51 @@
+.input {
+    &__item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        position: relative;
+        overflow: visible;
+
+        & > span {
+            position: absolute;
+            color: var(--color-red);
+            font-size: 1.15rem;
+        }
+    }
+
+    &__field {
+        font-family: var(--font-montserrat);
+        padding: 0 1rem;
+        height: 4.25rem;
+        width: 20rem;
+        font-size: 1.5rem;
+        border: 0.125rem solid var(--color-background-light);
+        border-radius: 1rem;
+        background-color: var(--black-piece);
+        color: var(--white-piece);
+        
+        &::placeholder {
+            color: rgba(244, 247, 250, 0.5);
+        }
+
+        &:focus {
+            outline: none;
+            border: 0.125rem solid rgba(167, 45, 246, 0.5);
+        }
+
+        &[type="password"] {
+            font-family: Verdana, sans-serif;
+            letter-spacing: 0.125rem;
+
+            &::placeholder {
+                font-family: var(--font-montserrat);
+                letter-spacing: 0;
+            }
+        }
+    }
+
+    &__error {
+        border: 0.125rem solid var(--color-red);
+    }
+}

@@ -1,0 +1,96 @@
+.profile {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    &__header {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 10rem;
+        font-size: 1.5rem;
+        background-color: var(--color-background-light);
+        margin-top: 4rem;
+        border-radius: 1rem;
+
+        &__container {
+            width: 100%;
+            display: flex;
+            align-items: flex-end;
+            margin-top: -4rem;
+        }
+    }
+
+    &__info {
+        position: relative;
+        width: 100%;
+        height: 50%;
+        display: flex;
+        justify-content: space-between;
+        margin-inline: 1rem;
+        bottom: -1rem;
+        font-family: var(--font-montserrat);
+        
+        &__left-side {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        &__right-side {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        &__location {
+            display: flex;
+            gap: 0.25rem;
+            margin-left: -0.25rem;
+
+            &-image {
+                width: 1.5rem;
+                height: auto;
+            }
+        }
+    }
+
+    &__nav {
+        &-bar {
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            gap: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+
+            &__container {
+                margin-bottom: 1rem;
+                display: flex;
+            }
+        }
+
+  
+        &__button {
+            &-active {
+                color: gray
+            }
+        }
+
+        &-exit {
+            &__button {
+                cursor: pointer;
+                color: var(--color-red);
+                opacity: 50%;
+                margin-right: 1.5rem;
+                margin-left: auto;
+
+                &:hover {
+                    opacity: 100%;
+                }
+            }
+        }
+    }
+}
