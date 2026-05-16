@@ -32,10 +32,10 @@ func (r *GamesRepository) GetGames(
 	}
 
 	if len(conditions) > 0 {
-		queryBuilder.WriteString("WHERE " + strings.Join(conditions, " AND "))
+		queryBuilder.WriteString("WHERE " + strings.Join(conditions, ""))
 	}
 	queryBuilder.WriteString(`
-		ORDER BY id ASC
+		ORDER BY created_at DESC
 		LIMIT $1
 		OFFSET $2;
 	`)
@@ -45,6 +45,7 @@ func (r *GamesRepository) GetGames(
 		queryBuilder.String(),
 		args...
 	)
+	
 	if err != nil {
 		return nil, fmt.Errorf("select games: %w", err)
 	}

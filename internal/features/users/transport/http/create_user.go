@@ -37,6 +37,7 @@ func (h *UsersHTTPHandler) CreateUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	userDomain := domainFromDTO(request)
+	
 
 	userDomain, err := h.usersService.CreateUser(ctx, userDomain)
 	if err != nil {

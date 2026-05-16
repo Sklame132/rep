@@ -1,0 +1,27 @@
+@use "./fonts.scss";
+
+:root {
+    --container-width: 1440px;
+    --container-padding: 16px;
+
+    --font-logo: "Benzin-ExtraBold", sans-serif;
+    --font-title: "Benzin-Bold", sans-serif;
+    --font-montserrat: "Montserrat-Regular", sans-serif;
+    --font-molde: "Molde-Regular", sans-serif;
+
+    --color-background: #212121;
+    --color-background-light: #2E2E2E;
+    --color-primary: #F9FF88;
+    --color-secondary: #A72DF6;
+    --color-pink: #C73975;
+    --color-red: #E83324;
+    --color-green: #4D8E41;
+
+    --white-square: #E8EDF9;
+    --white-piece: #F4F7FA;
+
+    --black-square: #B7C0D8;
+    --black-piece: #34364C;
+
+    --active: #7B61FF;
+}

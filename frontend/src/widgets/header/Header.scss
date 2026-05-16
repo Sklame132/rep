@@ -1,0 +1,28 @@
+@use "../../variables";
+
+.header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    &__date {
+
+    }
+
+    &__location {
+        
+    }
+
+    &.wrapper {
+        background-color: var(--color-background-light);
+        margin: 1rem;
+        border-radius: 1rem;
+    }
+
+    &__bottom {
+        margin: 4rem 0 2rem 0;
+        font-family: var(--font-title);
+        font-size: 1.5rem;
+        letter-spacing: 0.2rem;
+    }
+}

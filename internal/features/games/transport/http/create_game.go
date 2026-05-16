@@ -32,6 +32,7 @@ func (h *GamesHTTPHandler) CreateGame(w http.ResponseWriter, r *http.Request) {
 	var request CreateGameRequest
 	if err := core_http_request.DecodeAndValidationRequest(r, &request); err != nil {
 		responseHandler.ErrorResponse(err, "failed to decode and validate HTTP request")
+		
 		return
 	}
 

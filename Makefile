@@ -61,6 +61,11 @@ rep-run:
 	go mod tidy && \
 	go run ${PROJECT_ROOT}/cmd/rep/main.go
 
+rep-websocket-run:
+	@cd ${PROJECT_ROOT}/websocket && \
+	tsc -b && \
+	node dist/index.js
+
 rep-deploy:
 	@docker compose up -d --build rep
 
