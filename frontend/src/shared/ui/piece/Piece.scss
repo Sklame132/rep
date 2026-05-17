@@ -1,0 +1,51 @@
+.chess {
+  &__piece {
+    cursor: pointer;
+    width: 5rem;
+    height: 5rem;
+    z-index: 2;
+
+    &.dragging {
+        pointer-events: none;
+        touch-action: none;
+        position: absolute;
+        z-index: 3;
+    }
+
+    &.w {
+        &>.primary-color {
+            fill: var(--white-piece);
+
+        }
+
+        &>.secondary-color {
+            fill: var(--black-piece)
+        }
+
+    }
+
+    &.b {
+        &>.primary-color {
+            fill: var(--black-piece);
+        }
+
+        &>.secondary-color {
+            fill: var(--white-piece)
+        }
+    }
+
+    &.copy {
+        width: 5rem;
+        height: 5rem;
+        opacity: 0.6;
+    }
+
+    &.check {
+    background-image: radial-gradient(circle farthest-side, var(--color-secondary) 65%, rgba(0, 0, 0, 0) 100%);
+    }
+
+    &.checkmate {
+        background-image: radial-gradient(circle farthest-side, var(--color-red) 65%, rgba(0, 0, 0, 0) 100%);
+    }
+  }
+}

@@ -27,7 +27,7 @@ function AuthApp() {
             <Routes>
                 <Route element={<MainLayout />}>
                     <Route path="/profile" element={<UserProfile />}/>
-                    <Route path="/game" element={<ChessGame />} />
+                    <Route path="/play" element={<ChessGame />} />
                 </Route>
 
                 <Route path="/register" element={<Register />}/>

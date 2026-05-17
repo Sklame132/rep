@@ -46,7 +46,7 @@ export const UserProfileMain = ({ activeEl, user, games, updateGameOffset }: {
                                 gameResult = "Поражение"
                             }
 
-                            const history = JSON.parse(game.history);
+                            const history = game.history;
 
                             return <HistoryGame key={index}
                                 mode={game.mode}
