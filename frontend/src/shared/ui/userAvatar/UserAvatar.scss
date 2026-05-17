@@ -7,6 +7,12 @@
         align-items: center;
         border-radius: 50%;
         background-color: var(--color-primary);
+        overflow: hidden;
+
+        &__image {
+            width: 5rem;
+            height: 5rem;
+        }
 
         &__wrapper {
             padding: 1rem;
